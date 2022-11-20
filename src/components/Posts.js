@@ -96,9 +96,9 @@ function Post(props) {
                     <div class="acoes">
                         <div>
                             {estaCurtido? (
-                                <ion-icon onClick={curtePost} name="heart" data-test="like-post"></ion-icon>
+                                <ion-icon onClick={curtePost} class="icon-red" name="heart" data-test="like-post"></ion-icon>
                             ) : (
-                                <ion-icon onClick={curtePost} class="icon-black" name="heart-outline" data-test="like-post"></ion-icon>
+                                <ion-icon onClick={curtePost}  name="heart-outline" data-test="like-post"></ion-icon>
                             )}
 
                             <ion-icon name="chatbubble-outline"></ion-icon>
