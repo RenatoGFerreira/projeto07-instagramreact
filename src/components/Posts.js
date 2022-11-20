@@ -68,10 +68,16 @@ function Post(props) {
         
     }
 
+    function curtirImagem(){
+        if(!estaCurtido){
+            setEstaCurtido(true)
+            setTotalCurtidas(totalCurtidas + 1)
+        }
+    }
 
     return (
         <>
-            <div class="post">
+            <div class="post" data-test="post">
                 <div class="topo">
                     <div class="usuario">
                         <img src={props.imageUser} alt={props.nameUser}/>
@@ -83,16 +89,16 @@ function Post(props) {
                 </div>
 
                 <div class="conteudo">
-                    <img src={props.contentImage} alt={props.nameUser} />
+                    <img onClick={curtirImagem}src={props.contentImage} alt={props.nameUser} data-test="post-image"/>
                 </div>
 
                 <div class="fundo">
                     <div class="acoes">
                         <div>
                             {estaCurtido? (
-                                <ion-icon onClick={curtePost} name="heart"></ion-icon>
+                                <ion-icon onClick={curtePost} name="heart" data-test="like-post"></ion-icon>
                             ) : (
-                                <ion-icon onClick={curtePost} class="icon-black" name="heart-outline"></ion-icon>
+                                <ion-icon onClick={curtePost} class="icon-black" name="heart-outline" data-test="like-post"></ion-icon>
                             )}
 
                             <ion-icon name="chatbubble-outline"></ion-icon>
@@ -101,7 +107,7 @@ function Post(props) {
                         </div>
                         <div>
                             {estaSalvo? (
-                            <ion-icon onClick={salvaPost} name="bookmark"></ion-icon>
+                            <ion-icon onClick={salvaPost} name="bookmark" data-test="save-post"></ion-icon>
                             ) : (
                             <ion-icon onClick={salvaPost} class="icon-black" name="bookmark-outline"></ion-icon>
                             )}
@@ -111,7 +117,7 @@ function Post(props) {
                     <div class="curtidas">
                         <img src={props.likeByImage} alt={props.likeByUser}/>
                         <div class="texto">
-                            Curtido por <strong>{props.likeByUser}</strong> e <strong>outras {totalCurtidas} pessoas</strong>
+                            Curtido por <strong>{props.likeByUser}</strong> e <strong data-test="likes-number">outras {totalCurtidas} pessoas</strong>
                         </div>
                     </div>
                 </div>
