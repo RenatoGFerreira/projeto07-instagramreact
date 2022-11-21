@@ -50,7 +50,7 @@ function Post(props) {
     const [estaSalvo, setEstaSalvo] = useState(props.foiSalvo)
     const [estaCurtido, setEstaCurtido] = useState(props.foiCurtido)
     const [totalCurtidas, setTotalCurtidas] = useState(props.totLiked)
-    console.log(totalCurtidas)
+    const [segundoClique, setSegundoClique] = useState(false)
 
 
     function salvaPost(){
@@ -69,9 +69,13 @@ function Post(props) {
     }
 
     function curtirImagem(){
-        if(!estaCurtido){
-            setEstaCurtido(true)
-            setTotalCurtidas(totalCurtidas + 1)
+        setSegundoClique(true)
+        setInterval(200, setSegundoClique(!segundoClique))
+        if(segundoClique){
+            if(!estaCurtido){
+                setEstaCurtido(true)
+                setTotalCurtidas(totalCurtidas + 1)
+            }
         }
     }
 
@@ -109,7 +113,7 @@ function Post(props) {
                             {estaSalvo? (
                             <ion-icon onClick={salvaPost} name="bookmark" data-test="save-post"></ion-icon>
                             ) : (
-                            <ion-icon onClick={salvaPost} class="icon-black" name="bookmark-outline"></ion-icon>
+                            <ion-icon onClick={salvaPost} class="icon-black" name="bookmark-outline" data-test="save-post"></ion-icon>
                             )}
                         </div>
                     </div>
